@@ -1,0 +1,44 @@
+.app {
+	padding: 1.5em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	button {
+		margin: 1em;
+		width: 90px;
+		height: 40px;
+		color: white;
+		background-color: teal;
+		border-radius: 2px;
+		border: none;
+		text-transform: uppercase;
+		cursor: pointer;
+
+		:active {
+			border: none;
+		}
+	}
+}
+
+.board {
+	background-color: black;
+	border: 2px solid black;
+	width: 450px;
+	.row {
+		margin-bottom: 0.5px;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+	}
+	.col {
+		margin: 0 0.5px;
+		background-color: white;
+		width: 50px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
