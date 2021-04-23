@@ -1,28 +1,16 @@
 import React, { useState } from 'react'
 import Cell from './Cell'
 
+import { createEmptyBoard, generate } from '../lib'
+
 export default function SudokuBoard ({ type }) {
-	const DIMENSION = 9
-	const ROWS = []
-
-	for (let i=0; i<DIMENSION; i++) {
-		const cols = []
-		for (let j=0; j<DIMENSION; j++) {
-			cols.push({ index: j, row: i, value: null })
-		}
-		ROWS.push({
-			index: i,
-			cols
-		})
-	}
-
 	const [selectedCell, setSelectedCell] = useState('')
-	const [rows, setRows] = useState(ROWS)
-	console.warn('ROWS', ROWS)
+	const [rows, setRows] = useState(generate())
 
+	console.warn('ROWS', rows)
 	return (
 		<div className='board'>
-			{ROWS.map((row) => {
+			{rows.map((row) => {
 				const { cols, index } = row
 				const isTheThirdRow = (row.index + 1) % 3 === 0
 				return (
@@ -38,7 +26,7 @@ export default function SudokuBoard ({ type }) {
 									type={type}
 									isSelected={isSelected}
 									setSelectedCell={setSelectedCell}
-									updateValue={(updatedRows) => setRows({...updatedRows})}
+									updateValue={(updatedRows) => setRows([...updatedRows])}
 									rows={rows}
 									cell={cell}
 								/>
