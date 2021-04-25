@@ -35,7 +35,8 @@ function App () {
         >
           {createMode ? 'Done' : 'Make your own puzzle'}
         </button>
-        <button onClick={() => restartGame(true)}>Generate new puzzle</button>
+        <button onClick={() => console.warn('TODO')}>Generate puzzle from string</button>
+        {/* <button onClick={() => restartGame(true)}>Generate new puzzle</button> */}
       </div>
       <div className='boards'>
         <SudokuBoard
