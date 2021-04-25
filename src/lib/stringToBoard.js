@@ -19,8 +19,8 @@ export default function stringToBoard (str) {
 		const cols = []
 		for (let j=0; j<DIMENSION; j++) {
 			const value = splitStr[splitStrCount]
-			const editable = value !== '.' // editable if the current character is "."
-			cols.push({ index: j, row: i, value: editable ? value : '', editable })
+			const editable = value === '.' // editable if the current character is "."
+			cols.push({ index: j, row: i, value: editable ? '' : value, editable })
 			splitStrCount++
 		}
 		board.push({

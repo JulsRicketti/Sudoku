@@ -23,13 +23,13 @@ export const SudokuBoardProvider = ({ children }) => {
 		message: ''
 	})
 
-	const finishCreatingBoard = () => {
-		const solution = findSolution(board)
+	const finishCreatingBoard = (_board) => {
+		const solution = findSolution(_board || board)
 
 		if (!solution) {
 			return { success: false }
 		} else {
-			setInitialBoard(board)
+			setInitialBoard(_board || board)
 			setSolutionBoard(solution)
 		}
 		return { success: true }

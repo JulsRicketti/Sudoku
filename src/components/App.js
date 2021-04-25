@@ -21,7 +21,8 @@ function App () {
         onClose={() => setEnterStringModalOpened(false)}
         setBoard={(_board) => {
           setBoard(_board)
-          finishCreatingBoard()
+          console.warn('BOARD', _board)
+          finishCreatingBoard(_board)
         }}
       />
       <div className='actions'>
