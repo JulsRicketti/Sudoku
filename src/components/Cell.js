@@ -29,6 +29,9 @@ export default function Cell ({ index, isSelected, setSelectedCell, type, cell, 
 						onChange={({ target: { value } })=> setCellValue(value)}
 						onBlur={() => {
 							rows[cell.row].cols[cell.index].value = cellValue
+							if (type === 'create') {
+								rows[cell.row].cols[cell.index].editable = false
+							}
 							updateValue(rows)
 							setSelectedCell('')
 						}}

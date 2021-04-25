@@ -12,7 +12,8 @@ export const SudokuBoardContext = createContext({
 })
 
 export const SudokuBoardProvider = ({ children }) => {
-	const initialBoard = generate()
+	const [initialBoard, setInitialBoard] = useState(generate())
+	// const initialBoard = generate()
 
 	const [board, setBoard] = useState(initialBoard)
 	const [solutionBoard, setSolutionBoard] = useState(findSolution(initialBoard))
@@ -21,6 +22,11 @@ export const SudokuBoardProvider = ({ children }) => {
 		success: false,
 		message: ''
 	})
+
+	const finishCreatingBoard = () => {
+		setInitialBoard(board)
+		setSolutionBoard(findSolution(board))
+	}
 
 	const restartGame = (withNewBoard = false) => {
 		if (withNewBoard) {
@@ -57,6 +63,7 @@ export const SudokuBoardProvider = ({ children }) => {
 		clearSolvedBoard: () => {
 			setSolutionBoard(initialBoard)
 		},
+		finishCreatingBoard,
 		restartGame,
 		boardVerification,
 		verifySolution,

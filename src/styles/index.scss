@@ -10,6 +10,15 @@ button {
 	border: none;
 	text-transform: uppercase;
 	cursor: pointer;
+
+	&:active {
+		background-color: #006666;
+	}
+
+	&:disabled {
+		background-color: rgba(0, 128, 128, 0.5);
+		cursor: not-allowed;
+	}
 }
 
 .app {

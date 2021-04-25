@@ -3,7 +3,7 @@ import SudokuBoard from './SudokuBoard'
 import { SudokuBoardContext } from '../context/SudokuBoardContext'
 
 function App () {
-  const { board, setBoard, solutionBoard, initialBoard, verifySolution, restartGame, clearMessage, boardVerification, generateNewBoard } = useContext(SudokuBoardContext)
+  const { board, setBoard, solutionBoard, initialBoard, finishCreatingBoard, verifySolution, restartGame, clearMessage, boardVerification, generateNewBoard } = useContext(SudokuBoardContext)
   const [createMode, setCreateMode] = useState(false)
   const [displaySolution, setDisplaySolution] = useState(false)
 
@@ -13,7 +13,14 @@ function App () {
     <div className='app'>
       <div className='actions'>
         <button
-          onClick={() => setCreateMode(!createMode)}
+          onClick={() => {
+            if (createMode) {
+              finishCreatingBoard()
+            } else {
+              restartGame(true)
+            }
+            setCreateMode(!createMode)
+          }}
           style={{
             backgroundColor: createMode ? '#990000' : ''
           }}
@@ -28,14 +35,14 @@ function App () {
           board={board}
           updateBoard={setBoard}
         />
-        <button onClick={() => setDisplaySolution(!displaySolution)}>{displaySolution ? 'Clear' : 'Solve'}</button>
+        <button disabled={createMode} onClick={() => setDisplaySolution(!displaySolution)}>{displaySolution ? 'Clear' : 'Solve'}</button>
         <SudokuBoard
           type='solution'
           board={displaySolution ? solutionBoard : initialBoard}
         />
       </div>
-      <button onClick={() => verifySolution()}>Verify</button>
-      <button onClick={() => restartGame()}>Reset</button>
+      <button disabled={createMode} onClick={() => verifySolution()}>Verify</button>
+      <button disabled={createMode} onClick={() => restartGame()}>Reset</button>
       {
         message ||
         (success && displaySolution && 'You did it! Congratulations! Now... Try without cheating ;)') ||
