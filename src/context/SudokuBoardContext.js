@@ -1,7 +1,7 @@
 
 import React, { createContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { generate, findSolution } from '../lib'
+import { generate, findSolution, isBoardComplete, validateBoard } from '../lib'
 
 export const SudokuBoardContext = createContext({
 	board: {},
@@ -17,7 +17,20 @@ export const SudokuBoardProvider = ({ children }) => {
 	const [board, setBoard] = useState(initialBoard)
 	const [solutionBoard, setSolutionBoard] = useState(findSolution(initialBoard))
 
-	console.warn('board', board)
+	const [boardVerification, setBoardVerification] = useState({
+		success: false,
+		message: ''
+	})
+
+	const verifySolution = () => {
+		if (!isBoardComplete(board)) {
+			setBoardVerification({ success: false, message: 'The board is not yet complete'})
+		} else if (!validateBoard(board)) {
+			setBoardVerification({ success: false, message: 'Errors have been found on the board'})
+		} else {
+			setBoardVerification({ success: true, message: '' })
+		}
+	}
 
   const valueObj = {
 		initialBoard,
@@ -29,7 +42,10 @@ export const SudokuBoardProvider = ({ children }) => {
 		},
 		clearSolvedBoard: () => {
 			setSolutionBoard(initialBoard)
-		}
+		},
+		boardVerification,
+		verifySolution,
+		clearMessage: () => setBoardVerification({ ...boardVerification, message: '' })
   }
 
   return (

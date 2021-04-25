@@ -3,9 +3,11 @@ import SudokuBoard from './SudokuBoard'
 import { SudokuBoardContext } from '../context/SudokuBoardContext'
 
 function App () {
-  const { board, setBoard, solutionBoard, initialBoard } = useContext(SudokuBoardContext)
+  const { board, setBoard, solutionBoard, initialBoard, verifySolution, clearMessage, boardVerification } = useContext(SudokuBoardContext)
   const [createMode, setCreateMode] = useState(false)
   const [displaySolution, setDisplaySolution] = useState(false)
+
+  const { success, message } = boardVerification
 
   return (
     <div className='app'>
@@ -32,7 +34,12 @@ function App () {
           board={displaySolution ? solutionBoard : initialBoard}
         />
       </div>
-
+      <button onClick={() => verifySolution()}>Verify</button>
+      {
+        message ||
+        (success && displaySolution && 'You did it! Congratulations! Now... Try without cheating ;)') ||
+        (success && 'You did it! Congratulations!')
+      }
     </div>
   )
 }
