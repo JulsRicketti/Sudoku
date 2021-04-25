@@ -22,6 +22,20 @@ export const SudokuBoardProvider = ({ children }) => {
 		message: ''
 	})
 
+	const restartGame = (withNewBoard = false) => {
+		if (withNewBoard) {
+			const newBoard = generate()
+			setBoard(newBoard)
+			setSolutionBoard(findSolution(newBoard))
+		} else {
+			setBoard(initialBoard)
+		}
+		setBoardVerification({
+			success: false,
+			message: ''
+		})
+	}
+
 	const verifySolution = () => {
 		if (!isBoardComplete(board)) {
 			setBoardVerification({ success: false, message: 'The board is not yet complete'})
@@ -43,6 +57,7 @@ export const SudokuBoardProvider = ({ children }) => {
 		clearSolvedBoard: () => {
 			setSolutionBoard(initialBoard)
 		},
+		restartGame,
 		boardVerification,
 		verifySolution,
 		clearMessage: () => setBoardVerification({ ...boardVerification, message: '' })

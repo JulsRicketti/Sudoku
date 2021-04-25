@@ -3,7 +3,7 @@ import SudokuBoard from './SudokuBoard'
 import { SudokuBoardContext } from '../context/SudokuBoardContext'
 
 function App () {
-  const { board, setBoard, solutionBoard, initialBoard, verifySolution, clearMessage, boardVerification } = useContext(SudokuBoardContext)
+  const { board, setBoard, solutionBoard, initialBoard, verifySolution, restartGame, clearMessage, boardVerification, generateNewBoard } = useContext(SudokuBoardContext)
   const [createMode, setCreateMode] = useState(false)
   const [displaySolution, setDisplaySolution] = useState(false)
 
@@ -20,7 +20,7 @@ function App () {
         >
           {createMode ? 'Done' : 'Make your own puzzle'}
         </button>
-        <button>Generate new puzzle</button>
+        <button onClick={() => restartGame(true)}>Generate new puzzle</button>
       </div>
       <div className='boards'>
         <SudokuBoard
@@ -35,6 +35,7 @@ function App () {
         />
       </div>
       <button onClick={() => verifySolution()}>Verify</button>
+      <button onClick={() => restartGame()}>Reset</button>
       {
         message ||
         (success && displaySolution && 'You did it! Congratulations! Now... Try without cheating ;)') ||
