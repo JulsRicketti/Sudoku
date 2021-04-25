@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Cell from './Cell'
 
-import { createEmptyBoard, generate } from '../lib'
-
-export default function SudokuBoard ({ type }) {
+export default function SudokuBoard ({ type, initialRows }) {
 	const [selectedCell, setSelectedCell] = useState('')
-	const [rows, setRows] = useState(generate())
+	const [rows, setRows] = useState([])
 
-	console.warn('ROWS', rows)
+	useEffect(() => {
+		setRows(initialRows)
+	}, [initialRows])
+
 	return (
 		<div className='board'>
 			{rows.map((row) => {

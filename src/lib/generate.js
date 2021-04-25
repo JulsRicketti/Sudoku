@@ -3,6 +3,7 @@ import createEmptyBoard from './createEmptyBoard'
 export default function generate () {
 	const emptyBoard = createEmptyBoard()
 	// Creating hard coded value for now
+	// return emptyBoard
 	return [
 		{
 			index: 0,
@@ -23,7 +24,7 @@ export default function generate () {
 			cols: [
 				{ row: 1, index: 0, value: '', editable: true },
 				{ row: 1, index: 1, value: '9', editable: false },
-				{ row: 1, index: 2, value: '0', editable: false },
+				{ row: 1, index: 2, value: '', editable: false },
 				{ row: 1, index: 3, value: '', editable: true },
 				{ row: 1, index: 4, value: '', editable: true },
 				{ row: 1, index: 5, value: '', editable: true },

@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import SudokuBoard from './SudokuBoard'
+import { generate, findSolution, validateBoard, isBoardComplete } from '../lib'
 
 function App() {
   const [createMode, setCreateMode] = useState(false)
+  const [solved, setSolve] = useState(false)
+  const initialRows = generate()
 
   return (
     <div className='app'>
@@ -20,9 +23,13 @@ function App() {
       <div className='boards'>
         <SudokuBoard
           type={createMode ? 'create' : 'play'}
+          initialRows={initialRows}
         />
-        <button>Solve</button>
-        <SudokuBoard type='solution' />
+        <button onClick={() => setSolve(!solved)}>{solved ? 'Clear' : 'Solve'}</button>
+        <SudokuBoard
+          type='solution'
+          initialRows={solved ? findSolution(initialRows) : initialRows }
+        />
       </div>
     </div>
   )
