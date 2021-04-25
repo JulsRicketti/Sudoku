@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import SudokuBoard from './SudokuBoard'
-import { generate, findSolution, validateBoard, isBoardComplete } from '../lib'
+import { SudokuBoardContext } from '../context/SudokuBoardContext'
 
-function App() {
+function App () {
+  const { board, setBoard, solutionBoard, initialBoard } = useContext(SudokuBoardContext)
   const [createMode, setCreateMode] = useState(false)
-  const [solved, setSolve] = useState(false)
-  const initialRows = generate()
+  const [displaySolution, setDisplaySolution] = useState(false)
 
   return (
     <div className='app'>
@@ -23,14 +23,16 @@ function App() {
       <div className='boards'>
         <SudokuBoard
           type={createMode ? 'create' : 'play'}
-          initialRows={initialRows}
+          board={board}
+          updateBoard={setBoard}
         />
-        <button onClick={() => setSolve(!solved)}>{solved ? 'Clear' : 'Solve'}</button>
+        <button onClick={() => setDisplaySolution(!displaySolution)}>{displaySolution ? 'Clear' : 'Solve'}</button>
         <SudokuBoard
           type='solution'
-          initialRows={solved ? findSolution(initialRows) : initialRows }
+          board={displaySolution ? solutionBoard : initialBoard}
         />
       </div>
+
     </div>
   )
 }

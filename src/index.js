@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { SudokuBoardProvider } from './context/SudokuBoardContext'
 import App from './components/App';
 
 import './styles/index.scss'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <SudokuBoardProvider>
     <App />
-  </React.StrictMode>,
+  </SudokuBoardProvider>,
   document.getElementById('root')
 );

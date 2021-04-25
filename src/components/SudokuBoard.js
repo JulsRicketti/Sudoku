@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Cell from './Cell'
 
-export default function SudokuBoard ({ type, initialRows }) {
+export default function SudokuBoard ({ type, board, updateBoard }) {
 	const [selectedCell, setSelectedCell] = useState('')
-	const [rows, setRows] = useState([])
-
-	useEffect(() => {
-		setRows(initialRows)
-	}, [initialRows])
 
 	return (
 		<div className='board'>
-			{rows.map((row) => {
+			{board.map((row) => {
 				const { cols, index } = row
 				const isTheThirdRow = (row.index + 1) % 3 === 0
 				return (
@@ -27,8 +22,8 @@ export default function SudokuBoard ({ type, initialRows }) {
 									type={type}
 									isSelected={isSelected}
 									setSelectedCell={setSelectedCell}
-									updateValue={(updatedRows) => setRows([...updatedRows])}
-									rows={rows}
+									updateValue={(updatedRows) => updateBoard([...updatedRows])}
+									rows={board}
 									cell={cell}
 								/>
 							)
