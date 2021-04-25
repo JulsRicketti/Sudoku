@@ -9,7 +9,7 @@ export default function Cell ({ index, isSelected, setSelectedCell, type, cell, 
 			className='cell'
 			style={{ marginRight: isTheThirdCol ? 2 : 0.5}}
 			onClick={() => {
-				if (type !== 'solution' && cell.editable) {
+				 if (type === 'create' || (type === 'play' && cell.editable)) {
 					if (isSelected) {
 						setSelectedCell('')
 					} else {
@@ -29,8 +29,9 @@ export default function Cell ({ index, isSelected, setSelectedCell, type, cell, 
 						onChange={({ target: { value } })=> setCellValue(value)}
 						onBlur={() => {
 							rows[cell.row].cols[cell.index].value = cellValue
+							// When in creation mode, cells with a value will become not editable, but a value, they become editable
 							if (type === 'create') {
-								rows[cell.row].cols[cell.index].editable = false
+								rows[cell.row].cols[cell.index].editable = !cellValue
 							}
 							updateValue(rows)
 							setSelectedCell('')

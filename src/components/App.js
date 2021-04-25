@@ -7,19 +7,27 @@ function App () {
   const [createMode, setCreateMode] = useState(false)
   const [displaySolution, setDisplaySolution] = useState(false)
 
+  const [creationFailedMessage, setCreationFailedMessage] = useState('')
+
   const { success, message } = boardVerification
 
   return (
     <div className='app'>
+      {creationFailedMessage}
       <div className='actions'>
         <button
           onClick={() => {
             if (createMode) {
-              finishCreatingBoard()
+              const { success } = finishCreatingBoard()
+              if (success) {
+                setCreateMode(false)
+                setCreationFailedMessage('')
+              } else {
+                setCreationFailedMessage('Board creation failed. This probably happened due to it being an invalid entry with no possible solution. Please review your entries.')
+              }
             } else {
-              restartGame(true)
+              setCreateMode(true)
             }
-            setCreateMode(!createMode)
           }}
           style={{
             backgroundColor: createMode ? '#990000' : ''
