@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react'
 import SudokuBoard from './SudokuBoard'
+import EnterStringModal from './EnterStringModal'
 import { SudokuBoardContext } from '../context/SudokuBoardContext'
 
 function App () {
   const { board, setBoard, solutionBoard, initialBoard, finishCreatingBoard, verifySolution, restartGame, clearMessage, boardVerification, generateNewBoard } = useContext(SudokuBoardContext)
   const [createMode, setCreateMode] = useState(false)
   const [displaySolution, setDisplaySolution] = useState(false)
+  const [enterStringModalOpened, setEnterStringModalOpened] = useState(false)
 
   const [creationFailedMessage, setCreationFailedMessage] = useState('')
 
@@ -14,6 +16,14 @@ function App () {
   return (
     <div className='app'>
       {creationFailedMessage}
+      <EnterStringModal
+        opened={enterStringModalOpened}
+        onClose={() => setEnterStringModalOpened(false)}
+        setBoard={(_board) => {
+          setBoard(_board)
+          finishCreatingBoard()
+        }}
+      />
       <div className='actions'>
         <button
           onClick={() => {
@@ -35,7 +45,7 @@ function App () {
         >
           {createMode ? 'Done' : 'Make your own puzzle'}
         </button>
-        <button onClick={() => console.warn('TODO')}>Generate puzzle from string</button>
+        <button onClick={() => setEnterStringModalOpened(true)}>Generate puzzle from string</button>
         {/* <button onClick={() => restartGame(true)}>Generate new puzzle</button> */}
       </div>
       <div className='boards'>

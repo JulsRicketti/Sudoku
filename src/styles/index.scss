@@ -80,3 +80,36 @@ button {
 		}
 	}
 }
+
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 350px;
+	height: 280px;
+	border: 1px solid black;
+	background-color: white;
+	display: flex;
+	flex-direction: column;;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 8px 8px 8px black;
+
+	input {
+		height: 25px;
+		width: 100%;
+	}
+
+	small {
+		color: red;
+	}
+
+	div:first-child {
+		padding: 1em;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+}
