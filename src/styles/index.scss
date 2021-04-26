@@ -26,7 +26,7 @@ button {
 	display: flex;
 	flex-direction: column;
 
-	.actions {
+	.puzzle-creation {
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -35,6 +35,24 @@ button {
 
 		button {
 			width: 300px;
+		}
+	}
+
+	.actions {
+		display: flex;
+		justify-content: center;
+		margin-top: 2em;
+
+		.reset {
+			background-color: #990000;
+
+			&:active {
+				background-color: #660000;
+			}
+
+			&:disabled {
+				background-color: rgba(153, 0, 0, 0.5);
+			}
 		}
 	}
 }

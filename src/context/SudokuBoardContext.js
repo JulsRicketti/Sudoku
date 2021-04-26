@@ -16,7 +16,7 @@ export const SudokuBoardProvider = ({ children }) => {
 	const [initialBoard, setInitialBoard] = useState(generate())
 
 	const [board, setBoard] = useState(_.cloneDeep(initialBoard))
-	const [solutionBoard, setSolutionBoard] = useState(findSolution(_.cloneDeep(initialBoard)))
+	const [solutionBoard, setSolutionBoard] = useState(null)
 
 	const [boardVerification, setBoardVerification] = useState({
 		success: false,
@@ -24,22 +24,23 @@ export const SudokuBoardProvider = ({ children }) => {
 	})
 
 	const finishCreatingBoard = (_board) => {
-		const solution = findSolution(_board || board)
+		// const solution = findSolution(_board || board)
 
-		if (!solution) {
-			return { success: false }
-		} else {
+		// if (!solution) {
+		// 	return { success: false }
+		// } else {
 			setInitialBoard(_board || board)
-			setSolutionBoard(solution)
-		}
-		return { success: true }
+			setBoard(_board || board)
+			// setSolutionBoard(solution)
+		// }
+		// return { success: true }
 	}
 
 	const restartGame = (withNewBoard = false) => {
 		if (withNewBoard) {
 			const newBoard = generate()
 			setBoard(newBoard)
-			setSolutionBoard(findSolution(newBoard))
+			// setSolutionBoard(findSolution(newBoard))
 		} else {
 			setBoard(initialBoard)
 		}
@@ -65,7 +66,7 @@ export const SudokuBoardProvider = ({ children }) => {
     setBoard,
     solutionBoard,
     solveBoard: () => {
-      setSolutionBoard(findSolution(solutionBoard))
+      setSolutionBoard(findSolution(initialBoard))
     },
     clearSolvedBoard: () => {
       setSolutionBoard(initialBoard)

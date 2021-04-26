@@ -15,7 +15,9 @@ export default function findSolution (board) {
 		return board
 	} else {
 		const possibilities = getNextBoards(board)
+		// console.warn('111', possibilities)
 		const validBoards = possibilities.filter((board) => validateBoard(board))
+		// console.warn('222', validBoards)
 		return backtrack(validBoards)
 	}
 }
