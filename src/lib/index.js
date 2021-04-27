@@ -6,10 +6,10 @@ import validateBoard from './validateBoard'
 import stringToBoard from './stringToBoard'
 
 export {
-	createEmptyBoard,
-	findSolution,
-	generate,
-	isBoardComplete,
-	stringToBoard,
-	validateBoard
+  createEmptyBoard,
+  findSolution,
+  generate,
+  isBoardComplete,
+  stringToBoard,
+  validateBoard
 }

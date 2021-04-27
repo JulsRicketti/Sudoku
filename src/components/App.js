@@ -21,13 +21,10 @@ function App () {
   const [displaySolution, setDisplaySolution] = useState(false)
   const [enterStringModalOpened, setEnterStringModalOpened] = useState(false)
 
-  const [creationFailedMessage, setCreationFailedMessage] = useState('')
-
   const { success, message } = boardVerification
 
   return (
     <div className='app'>
-      {creationFailedMessage}
       <EnterStringModal
         opened={enterStringModalOpened}
         onClose={() => setEnterStringModalOpened(false)}
@@ -41,13 +38,7 @@ function App () {
         <button
           onClick={() => {
             if (createMode) {
-              // const { success } = finishCreatingBoard()
-              // if (success) {
-                setCreateMode(false)
-              //   setCreationFailedMessage('')
-              // } else {
-              //   setCreationFailedMessage('Board creation failed. This probably happened due to it being an invalid entry with no possible solution. Please review your entries.')
-              // }
+              setCreateMode(false)
             } else {
               setCreateMode(true)
             }
