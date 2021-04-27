@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import SudokuBoard from './SudokuBoard'
 import EnterStringModal from './EnterStringModal'
+import Chronometer from './Chronometer'
 import { SudokuBoardContext } from '../context/SudokuBoardContext'
 
 function App () {
@@ -71,6 +72,9 @@ function App () {
       <div className='actions'>
         <button disabled={createMode} onClick={() => verifySolution()}>Verify</button>
         <button className='reset' disabled={createMode} onClick={() => restartGame()}>Reset</button>
+      </div>
+      <div className='chronometer'>
+        <Chronometer isRunning={false}/>
       </div>
       {
         message ||

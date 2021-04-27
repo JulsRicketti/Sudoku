@@ -10,29 +10,34 @@ import isBoardComplete from './isBoardComplete'
 // 5- repeat
 // 6- backtrack if we reach a dead end
 
+// Test examples:
+// 1................................................................................
+// 4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4...... NOT WORKING!
+// 4.......5.3..........7......2.....6.......4......1.........3.7.5..2.....1.4......
+// ..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..
+
 export default function findSolution (board) {
 	if (isBoardComplete(board)) {
 		return board
 	} else {
 		const possibilities = getNextBoards(board)
-		// console.warn('111', possibilities)
 		const validBoards = possibilities.filter((board) => validateBoard(board))
-		// console.warn('222', validBoards)
-		return backtrack(validBoards)
-	}
-}
 
-function backtrack (boards) {
-	if (!boards.length) {
-		return false
-	} else {
-		const first = boards.shift()
-		const tryPath = findSolution(first)
-		if (tryPath) {
-			return tryPath
-		} else {
-			return backtrack(boards)
+		const backtrack = (boards) => {
+			if (!boards.length) {
+				return false
+			} else {
+				const first = boards.shift()
+				const tryPath = findSolution(first)
+				if (tryPath) {
+					return tryPath
+				} else {
+					return backtrack(boards)
+				}
+			}
 		}
+
+		return backtrack(validBoards)
 	}
 }
 
