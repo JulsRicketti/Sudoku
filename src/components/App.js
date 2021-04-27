@@ -38,6 +38,7 @@ function App () {
           onClick={() => {
             if (createMode) {
               setCreateMode(false)
+              finishCreatingBoard(board)
             } else {
               setCreateMode(true)
             }
@@ -52,7 +53,7 @@ function App () {
       </div>
       <div className='boards'>
         <SudokuBoard
-          type={createMode ? 'create' : 'play'}
+          mode={createMode ? 'create' : 'play'}
           board={board}
           updateBoard={setBoard}
         />
@@ -70,8 +71,9 @@ function App () {
           >
             {displaySolution ? 'Clear' : 'Solve'}
           </button>
+
         <SudokuBoard
-          type='solution'
+          mode='solution'
           board={displaySolution ? solutionBoard : initialBoard}
         />
       </div>

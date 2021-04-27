@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Cell from './Cell'
 
-export default function SudokuBoard ({ type, board, updateBoard }) {
+export default function SudokuBoard ({ mode, board, updateBoard }) {
   const [selectedCell, setSelectedCell] = useState('')
 
   return (
@@ -20,7 +20,7 @@ export default function SudokuBoard ({ type, board, updateBoard }) {
                 <Cell
                   key={key}
                   index={key}
-                  type={type}
+                  mode={mode}
                   isSelected={isSelected}
                   setSelectedCell={setSelectedCell}
                   updateValue={(updatedRows) => updateBoard([...updatedRows])}
@@ -37,7 +37,7 @@ export default function SudokuBoard ({ type, board, updateBoard }) {
 }
 
 SudokuBoard.propTypes = {
-  type: PropTypes.oneOf(['create', 'solution', 'play']),
+  mode: PropTypes.oneOf(['create', 'solution', 'play']),
   board: PropTypes.array,
   updateBoard: PropTypes.func
 }
