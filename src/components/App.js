@@ -60,8 +60,10 @@ function App () {
         <button
           disabled={createMode}
           onClick={() => {
+            if (!displaySolution) {
+              solveBoard()
+            }
             setDisplaySolution(!displaySolution)
-            solveBoard()
           }}
           >
             {displaySolution ? 'Clear' : 'Solve'}
