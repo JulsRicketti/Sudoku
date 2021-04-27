@@ -10,7 +10,6 @@ export default function Chronometer ({ isRunning }) {
 				setMilliseconds((ms) => ms + 1)
 			}, 1)
 		} else {
-			setMilliseconds(0)
 			clearInterval(interval)
 		}
 
@@ -22,7 +21,7 @@ export default function Chronometer ({ isRunning }) {
 	return (
 		<div>
 			<h3>Solution time:</h3>
-			<h4>{milisseconds/1000}</h4>
+			<h4>{milisseconds/100}</h4>
 		</div>
 	)
 }

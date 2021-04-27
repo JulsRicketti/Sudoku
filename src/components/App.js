@@ -5,7 +5,18 @@ import Chronometer from './Chronometer'
 import { SudokuBoardContext } from '../context/SudokuBoardContext'
 
 function App () {
-  const { board, setBoard, solutionBoard, solveBoard, initialBoard, finishCreatingBoard, verifySolution, restartGame, clearMessage, boardVerification, generateNewBoard } = useContext(SudokuBoardContext)
+  const {
+    board,
+    setBoard,
+    solutionBoard,
+    solveBoard,
+    initialBoard,
+    finishCreatingBoard,
+    verifySolution,
+    restartGame,
+    boardVerification,
+    solving
+  } = useContext(SudokuBoardContext)
   const [createMode, setCreateMode] = useState(false)
   const [displaySolution, setDisplaySolution] = useState(false)
   const [enterStringModalOpened, setEnterStringModalOpened] = useState(false)
@@ -74,7 +85,7 @@ function App () {
         <button className='reset' disabled={createMode} onClick={() => restartGame()}>Reset</button>
       </div>
       <div className='chronometer'>
-        <Chronometer isRunning={false}/>
+        <Chronometer isRunning={solving}/>
       </div>
       {
         message ||
