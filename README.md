@@ -8,6 +8,11 @@ npm install
 npm run dev
 ```
 
+For the tests, run:
+```
+npm run test
+```
+
 ## Usage
 There are two boards, the left board which is the main one to play and the right one, which is just a solution board.
 

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import SudokuBoard from './SudokuBoard'
 import EnterStringModal from './EnterStringModal'
-import Chronometer from './Chronometer'
 import { SudokuBoardContext } from '../context/SudokuBoardContext'
 
 function App () {
@@ -14,12 +13,12 @@ function App () {
     finishCreatingBoard,
     verifySolution,
     restartGame,
-    boardVerification,
-    solving
+    boardVerification
   } = useContext(SudokuBoardContext)
   const [createMode, setCreateMode] = useState(false)
   const [displaySolution, setDisplaySolution] = useState(false)
   const [enterStringModalOpened, setEnterStringModalOpened] = useState(false)
+  const [totalSolutionTime, setTotalSolutionTime] = useState(null)
 
   const { success, message } = boardVerification
 
@@ -61,7 +60,10 @@ function App () {
           disabled={createMode}
           onClick={() => {
             if (!displaySolution) {
-              solveBoard()
+              const time = solveBoard()
+              setTotalSolutionTime(time)
+            } else {
+              setTotalSolutionTime(null)
             }
             setDisplaySolution(!displaySolution)
           }}
@@ -77,9 +79,11 @@ function App () {
         <button disabled={createMode} onClick={() => verifySolution()}>Verify</button>
         <button className='reset' disabled={createMode} onClick={() => restartGame()}>Reset</button>
       </div>
-      <div className='chronometer'>
-        <Chronometer isRunning={solving}/>
-      </div>
+      {totalSolutionTime && (
+        <div style={{ textAlign: 'center' }}>
+          <h3>Solution time: {(totalSolutionTime / 1000).toFixed(3)}s</h3>
+        </div>
+      )}
       {
         message ||
         (success && displaySolution && 'You did it! Congratulations! Now... Try without cheating ;)') ||

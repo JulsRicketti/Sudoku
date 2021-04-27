@@ -23,7 +23,7 @@ test('should successfully generate board from a string', () => {
       const { row, value, editable } = cell
       expect(row).toEqual(index)
       expect(['', '1', '2', '3', '4', '5', '6', '7', '8', '9']).toContain(value)
-      expect(editable).toEqual(!!value)
+      expect(editable).toEqual(!value)
     })
   })
 })

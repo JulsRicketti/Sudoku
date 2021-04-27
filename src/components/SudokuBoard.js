@@ -24,7 +24,7 @@ export default function SudokuBoard ({ type, board, updateBoard }) {
                   isSelected={isSelected}
                   setSelectedCell={setSelectedCell}
                   updateValue={(updatedRows) => updateBoard([...updatedRows])}
-                  rows={board}
+                  board={board}
                   cell={cell}
                 />
               )
@@ -38,6 +38,6 @@ export default function SudokuBoard ({ type, board, updateBoard }) {
 
 SudokuBoard.propTypes = {
   type: PropTypes.oneOf(['create', 'solution', 'play']),
-  board: PropTypes.object,
+  board: PropTypes.array,
   updateBoard: PropTypes.func
 }

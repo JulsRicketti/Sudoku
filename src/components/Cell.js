@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-export default function Cell ({ index, isSelected, setSelectedCell, type, cell, rows, updateValue }) {
+export default function Cell ({ index, isSelected, setSelectedCell, type, cell, board, updateValue }) {
   const [cellValue, setCellValue] = useState(null)
   const isTheThirdCol = (cell.index + 1) % 3 === 0
 
@@ -29,19 +29,19 @@ export default function Cell ({ index, isSelected, setSelectedCell, type, cell, 
            value={cellValue || ''}
             onChange={({ target: { value } }) => setCellValue(value)}
             onBlur={() => {
-              rows[cell.row].cols[cell.index].value = cellValue
+              board[cell.row].cols[cell.index].value = cellValue
               // When in creation mode, cells with a value will become not editable, but a value, they become editable
               if (type === 'create') {
-                rows[cell.row].cols[cell.index].editable = !cellValue
+                board[cell.row].cols[cell.index].editable = !cellValue
               }
-              updateValue(rows)
+              updateValue(board)
               setSelectedCell('')
             }}
           />
           )
         : (
           <span style={{ fontWeight: cell.editable ? '' : 'bold', color: cell.editable ? '' : 'teal' }}>
-            {rows[cell.row]?.cols[cell.index]?.value}
+            {board[cell.row]?.cols[cell.index]?.value}
           </span>
           )
         }
@@ -50,11 +50,11 @@ export default function Cell ({ index, isSelected, setSelectedCell, type, cell, 
 }
 
 Cell.propTypes = {
-  index: PropTypes.number,
+  index: PropTypes.string,
   isSelected: PropTypes.bool,
   setSelectedCell: PropTypes.func,
   type: PropTypes.oneOf(['create', 'play', 'solution']),
   cell: PropTypes.object,
-  rows: PropTypes.object,
+  board: PropTypes.array,
   updateValue: PropTypes.func
 }

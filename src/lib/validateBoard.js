@@ -1,4 +1,4 @@
-function validRow (board) {
+export function validRow (board) {
   for (let i = 0; i < 9; i++) {
     const values = []
     for (let j = 0; j < 9; j++) {
@@ -13,7 +13,7 @@ function validRow (board) {
   return true
 }
 
-function validColumn (board) {
+export function validColumn (board) {
   for (let i = 0; i < 9; i++) {
     const values = []
     for (let j = 0; j < 9; j++) {
@@ -28,7 +28,7 @@ function validColumn (board) {
   return true
 }
 
-function validBox (board) {
+export function validBox (board) {
   const boxCoordinates = [
     [0, 0], [0, 1], [0, 2],
     [1, 0], [1, 1], [1, 2],
