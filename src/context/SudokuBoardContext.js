@@ -32,7 +32,6 @@ export const SudokuBoardProvider = ({ children }) => {
     if (withNewBoard) {
       const newBoard = generate()
       setBoard(newBoard)
-      // setSolutionBoard(findSolution(newBoard))
     } else {
       setBoard(initialBoard)
     }
@@ -60,14 +59,14 @@ export const SudokuBoardProvider = ({ children }) => {
     solveBoard: () => {
       const start = performance.now()
       const solution = findSolution(initialBoard)
-      setSolutionBoard(findSolution(initialBoard))
+      const end = performance.now()
+      setSolutionBoard(solution)
       if (!solution) {
         setBoardVerification({
           success: false,
           message: 'Board could not be solved. This is most likely due to it having a contradction. Review its initial values.'
         })
       }
-      const end = performance.now()
       const executionTime = end - start
       return executionTime
     },

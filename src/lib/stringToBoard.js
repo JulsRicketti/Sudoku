@@ -1,4 +1,5 @@
-export default function stringToBoard (str) {
+// Using CommonJS because this script is used in the findSolutionCli script
+module.exports = function stringToBoard (str) {
   const acceptableCharacters = ['.', '1', '2', '3', '4', '5', '6', '7', '8', '9']
   const splitStr = str.split('')
 

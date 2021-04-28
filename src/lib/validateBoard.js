@@ -1,4 +1,6 @@
-export function validRow (board) {
+// Using CommonJS because this script is used in the findSolutionCli script
+
+function validRow (board) {
   for (let i = 0; i < 9; i++) {
     const values = []
     for (let j = 0; j < 9; j++) {
@@ -13,7 +15,7 @@ export function validRow (board) {
   return true
 }
 
-export function validColumn (board) {
+function validColumn (board) {
   for (let i = 0; i < 9; i++) {
     const values = []
     for (let j = 0; j < 9; j++) {
@@ -28,7 +30,7 @@ export function validColumn (board) {
   return true
 }
 
-export function validBox (board) {
+function validBox (board) {
   const boxCoordinates = [
     [0, 0], [0, 1], [0, 2],
     [1, 0], [1, 1], [1, 2],
@@ -56,6 +58,6 @@ export function validBox (board) {
   return true
 }
 
-export default function validateBoard (board) {
+module.exports = function validateBoard (board) {
   return validRow(board) && validColumn(board) && validBox(board)
 }

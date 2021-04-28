@@ -13,7 +13,14 @@ For the tests, run:
 npm run test
 ```
 
-## Usage
+## CLI Algorithm
+If you wish to run the Sudoku solution algorithm in isolation with node in the CLI, the `algorithm` script was added. In order for it to work, you will need to pass in a value using the string pattern from the [norvig.com](http://norvig.com/sudoku.html) as an argument.
+
+```
+npm run algorithm ........5.3..........7......2.....6.......4......1.........3.7.5..2.....1.4......
+```
+
+## WebApp Usage
 There are two boards, the left board which is the main one to play and the right one, which is just a solution board.
 
 Click any empty cell in the left board to fill it in as you please. The one on the right is uneditable since it is only used to display solutions.

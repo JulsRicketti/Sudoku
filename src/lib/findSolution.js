@@ -1,6 +1,9 @@
-import _ from 'lodash'
-import validateBoard from './validateBoard'
-import isBoardComplete from './isBoardComplete'
+// Using CommonJS because this script is used in the findSolutionCli script
+
+const _ = require('lodash')
+const stringToBoard = require('./stringToBoard')
+const validateBoard = require('./validateBoard')
+const isBoardComplete = require('./isBoardComplete')
 
 // Algorithm
 // 1- find empty cell
@@ -10,13 +13,7 @@ import isBoardComplete from './isBoardComplete'
 // 5- repeat
 // 6- backtrack if we reach a dead end
 
-// Test examples:
-// 1................................................................................
-// 4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4...... NOT WORKING!
-// 4.......5.3..........7......2.....6.......4......1.........3.7.5..2.....1.4......
-// ..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..
-
-export default function findSolution (board) {
+module.exports = function findSolution (board) {
   if (isBoardComplete(board)) {
     return board
   } else {
