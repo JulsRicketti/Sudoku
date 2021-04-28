@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 export default function Cell ({ index, isSelected, setSelectedCell, mode, cell, board, updateValue }) {
   const [cellValue, setCellValue] = useState(null)
   const isTheThirdCol = (cell.index + 1) % 3 === 0
+  const validEntries = ['', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
   return (
     <div
@@ -27,7 +28,7 @@ export default function Cell ({ index, isSelected, setSelectedCell, mode, cell, 
             min={1}
             max={9}
             value={cellValue || ''}
-            onChange={({ target: { value } }) => setCellValue(value)}
+            onChange={({ target: { value } }) => validEntries.includes(value) && value.length < 2 && setCellValue(value)}
             onBlur={() => {
               board[cell.row].cols[cell.index].value = cellValue
               // When in creation mode, cells with a value will become not editable, but a value, they become editable
@@ -50,11 +51,11 @@ export default function Cell ({ index, isSelected, setSelectedCell, mode, cell, 
 }
 
 Cell.propTypes = {
-  index: PropTypes.string,
-  isSelected: PropTypes.bool,
-  setSelectedCell: PropTypes.func,
-  mode: PropTypes.oneOf(['create', 'play', 'solution']),
-  cell: PropTypes.object,
-  board: PropTypes.array,
-  updateValue: PropTypes.func
+  index: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  setSelectedCell: PropTypes.func.isRequired,
+  mode: PropTypes.oneOf(['create'.isRequired, 'play'.isRequired, 'solution']).isRequired,
+  cell: PropTypes.object.isRequired,
+  board: PropTypes.array.isRequired,
+  updateValue: PropTypes.func.isRequired
 }

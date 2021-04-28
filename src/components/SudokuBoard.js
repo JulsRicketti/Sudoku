@@ -37,7 +37,7 @@ export default function SudokuBoard ({ mode, board, updateBoard }) {
 }
 
 SudokuBoard.propTypes = {
-  mode: PropTypes.oneOf(['create', 'solution', 'play']),
-  board: PropTypes.array,
-  updateBoard: PropTypes.func
+  mode: PropTypes.oneOf(['create', 'solution', 'play']).isRequired,
+  board: PropTypes.array.isRequired,
+  updateBoard: PropTypes.func.isRequired
 }

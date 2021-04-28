@@ -59,12 +59,16 @@ export const SudokuBoardProvider = ({ children }) => {
     solutionBoard,
     solveBoard: () => {
       const start = performance.now()
-      console.warn(start)
+      const solution = findSolution(initialBoard)
       setSolutionBoard(findSolution(initialBoard))
+      if (!solution) {
+        setBoardVerification({
+          success: false,
+          message: 'Board could not be solved. This is most likely due to it having a contradction. Review its initial values.'
+        })
+      }
       const end = performance.now()
-      console.warn(end)
       const executionTime = end - start
-      console.warn(executionTime)
       return executionTime
     },
     clearSolvedBoard: () => {

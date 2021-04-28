@@ -43,7 +43,7 @@ export default function EnterStringModal ({ opened, onClose, setBoard }) {
 }
 
 EnterStringModal.propTypes = {
-  opened: PropTypes.bool,
-  onClose: PropTypes.func,
-  setBoard: PropTypes.func
+  opened: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  setBoard: PropTypes.func.isRequired
 }
