@@ -54,7 +54,7 @@ Cell.propTypes = {
   index: PropTypes.string.isRequired,
   isSelected: PropTypes.bool.isRequired,
   setSelectedCell: PropTypes.func.isRequired,
-  mode: PropTypes.oneOf(['create'.isRequired, 'play'.isRequired, 'solution']).isRequired,
+  mode: PropTypes.oneOf(['create', 'play', 'solution']).isRequired,
   cell: PropTypes.object.isRequired,
   board: PropTypes.array.isRequired,
   updateValue: PropTypes.func.isRequired

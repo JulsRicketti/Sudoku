@@ -1,8 +1,8 @@
 // Using CommonJS because this script is used in the findSolutionCli script
 
 const _ = require('lodash')
-const stringToBoard = require('./stringToBoard')
-const validateBoard = require('./validateBoard')
+const boardToString = require('./boardToString')
+const { validateBoard } = require('./validateBoard')
 const isBoardComplete = require('./isBoardComplete')
 
 // Algorithm
@@ -17,24 +17,29 @@ module.exports = function findSolution (board) {
   if (isBoardComplete(board)) {
     return board
   } else {
+    // (1 & 2) Finds first empty cell and creates the possibilities
     const possibilities = getNextBoards(board)
+    // (3) Validates each possibility
     const validBoards = possibilities.filter((board) => validateBoard(board))
 
-    const backtrack = (boards) => {
+    // (4) Picks a valid board and moves on to to find the next board with the first cell filled in.
+    // (5 & 6) Recursively repeats itself with the board with the
+    const advanceOrBacktrack = (boards) => {
       if (!boards.length) {
         return false
       } else {
         const first = boards.shift()
+        // console.log('Current board:', boardToString(first))
         const tryPath = findSolution(first)
         if (tryPath) {
           return tryPath
         } else {
-          return backtrack(boards)
+          return advanceOrBacktrack(boards)
         }
       }
     }
 
-    return backtrack(validBoards)
+    return advanceOrBacktrack(validBoards)
   }
 }
 
@@ -43,7 +48,6 @@ function getNextBoards (board) {
   const firstEmptyCell = findFirstEmptyCellIndex(board)
   if (firstEmptyCell) {
     const { rowIndex, columnIndex } = firstEmptyCell
-    // console.table({rowIndex, columnIndex})
 
     for (let i = 0; i < 9; i++) {
       const newBoard = _.cloneDeep(board)

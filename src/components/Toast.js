@@ -20,7 +20,7 @@ export default function Toast ({ type = 'error', message, display, hideToast }) 
 }
 
 Toast.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   message: PropTypes.string.isRequired,
   display: PropTypes.bool.isRequired,
   hideToast: PropTypes.func.isRequired
