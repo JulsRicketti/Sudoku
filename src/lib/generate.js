@@ -1,13 +1,6 @@
-import createEmptyBoard from './createEmptyBoard'
-
-// const EASY = 60
-// const MEDIUM = 40
-// const HARD = 20
 
 export default function generate () {
-  const emptyBoard = createEmptyBoard()
   // Creating hard coded value for now
-  // return emptyBoard
   return [
     {
       index: 0,

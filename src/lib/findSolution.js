@@ -49,7 +49,7 @@ function getNextBoards (board) {
     const { rowIndex, columnIndex } = firstEmptyCell
 
     for (let i = 0; i < 9; i++) {
-      const newBoard = _.cloneDeep(board)
+      const newBoard = [...board]
       const row = _.cloneDeep(newBoard[rowIndex])
       row.cols[columnIndex].value = (i + 1).toString()
       newBoard[rowIndex] = row

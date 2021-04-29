@@ -5,11 +5,16 @@ import _ from 'lodash'
 import { generate, findSolution, isBoardComplete, validateBoard } from '../lib'
 
 export const SudokuBoardContext = createContext({
+  initialBoard: {},
+  setInitialBoard: () => null,
   board: {},
   setBoard: () => null,
   solutionBoard: {},
   solveBoard: () => null,
-  clearSolvedBoard: () => null
+  clearSolvedBoard: () => null,
+  finishCreatingBoard: () => null,
+  restartGame: () => null,
+  verifySolution: () => null
 })
 
 export const SudokuBoardProvider = ({ children }) => {

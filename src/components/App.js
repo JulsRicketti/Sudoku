@@ -90,7 +90,7 @@ function App () {
       </div>
       {solutionBoard && totalSolutionTime && (
         <div style={{ textAlign: 'center' }}>
-          <h3>Solution time: {(totalSolutionTime / 1000).toFixed(3)}s</h3>
+          <h3>Solution time: {(totalSolutionTime / 1000).toFixed(5)}s</h3>
         </div>
       )}
     </div>
