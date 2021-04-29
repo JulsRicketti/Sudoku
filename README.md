@@ -14,10 +14,10 @@ npm run test
 ```
 
 ## CLI Algorithm
-If you wish to run the Sudoku solution algorithm in isolation with node in the CLI, the `algorithm` script was added. In order for it to work, you will need to pass in a value using the string pattern from the [norvig.com](http://norvig.com/sudoku.html) as an argument.
+If you wish to run the Sudoku solution algorithm in isolation with node in the command line, the `find-solution` script was added. In order for it to work, you will need to pass in a value using the string pattern from the [norvig.com](http://norvig.com/sudoku.html) as an argument.
 
 ```
-npm run algorithm ........5.3..........7......2.....6.......4......1.........3.7.5..2.....1.4......
+npm run find-solution ........5.3..........7......2.....6.......4......1.........3.7.5..2.....1.4......
 ```
 
 ## WebApp Usage
