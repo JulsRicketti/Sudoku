@@ -1,7 +1,6 @@
 // Using CommonJS because this script is used in the findSolutionCli script
-
 const _ = require('lodash')
-const boardToString = require('./boardToString')
+// const boardToString = require('./boardToString')
 const { validateBoard } = require('./validateBoard')
 const isBoardComplete = require('./isBoardComplete')
 
@@ -13,7 +12,7 @@ const isBoardComplete = require('./isBoardComplete')
 // 5- repeat
 // 6- backtrack if we reach a dead end
 
-module.exports = function findSolution (board) {
+function findSolution (board) {
   if (isBoardComplete(board)) {
     return board
   } else {
@@ -68,4 +67,10 @@ function findFirstEmptyCellIndex (board) {
       }
     }
   }
+}
+
+module.exports = {
+  findSolution,
+  getNextBoards,
+  findFirstEmptyCellIndex
 }

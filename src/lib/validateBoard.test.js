@@ -1,5 +1,5 @@
 import { validateBoard, boxesValid, columnsValid, rowsValid } from './validateBoard'
-import findSolution from './findSolution'
+import { findSolution } from './findSolution'
 import stringToBoard from './stringToBoard'
 
 const INVALID_BOARD_STRING = '999999999999999999999999999999999999999999999999999999999999999999999999999999999'
