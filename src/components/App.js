@@ -24,15 +24,17 @@ function App () {
 
   const { success, message } = boardVerification
 
+  const successMessage = success
+    ? displaySolution ? 'You did it! Congratulations! Now... Try without cheating ;)' : 'You did it! Congratulations!'
+    : ''
   return (
     <div className='app'>
-      <Toast message={message} display={!!message} hideToast={() => clearMessage()}/>
+      <Toast type={success ? 'success' : 'error'} message={message || successMessage} display={!!(message || successMessage)} hideToast={() => clearMessage()}/>
       <EnterStringModal
         opened={enterStringModalOpened}
         onClose={() => setEnterStringModalOpened(false)}
         setBoard={(_board) => {
           setBoard(_board)
-          console.warn('BOARD', _board)
           finishCreatingBoard(_board)
         }}
       />
@@ -44,6 +46,8 @@ function App () {
               finishCreatingBoard(board)
             } else {
               setCreateMode(true)
+              // Remove any values put in before entering creation mode
+              setBoard(initialBoard)
             }
           }}
           style={{
@@ -89,10 +93,6 @@ function App () {
           <h3>Solution time: {(totalSolutionTime / 1000).toFixed(3)}s</h3>
         </div>
       )}
-      {
-        (success && displaySolution && 'You did it! Congratulations! Now... Try without cheating ;)') ||
-        (success && 'You did it! Congratulations!')
-      }
     </div>
   )
 }

@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 
 export default function Toast ({ type = 'error', message, display, hideToast }) {
   useEffect(() => {
-    setTimeout(() => {
-      hideToast()
-    }, 10000)
-  })
+    if (display) {
+      setTimeout(() => {
+        hideToast()
+      }, 5000)
+    }
+  }, [display])
 
   return display
     ? (

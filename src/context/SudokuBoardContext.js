@@ -24,17 +24,12 @@ export const SudokuBoardProvider = ({ children }) => {
   })
 
   const finishCreatingBoard = (_board) => {
-    setInitialBoard(_board || board)
+    setInitialBoard(_.cloneDeep(_board || board))
     setBoard(_board || board)
   }
 
-  const restartGame = (withNewBoard = false) => {
-    if (withNewBoard) {
-      const newBoard = generate()
-      setBoard(newBoard)
-    } else {
-      setBoard(initialBoard)
-    }
+  const restartGame = () => {
+    setBoard(_.cloneDeep(initialBoard))
     setBoardVerification({
       success: false,
       message: ''
@@ -57,8 +52,9 @@ export const SudokuBoardProvider = ({ children }) => {
     setBoard,
     solutionBoard,
     solveBoard: () => {
+      const clonedInitialBoard = _.cloneDeep(initialBoard)
       const start = performance.now()
-      const solution = findSolution(initialBoard)
+      const solution = findSolution(clonedInitialBoard)
       const end = performance.now()
       setSolutionBoard(solution)
       if (!solution) {
@@ -71,13 +67,13 @@ export const SudokuBoardProvider = ({ children }) => {
       return executionTime
     },
     clearSolvedBoard: () => {
-      setSolutionBoard(initialBoard)
+      setSolutionBoard(_.cloneDeep(initialBoard))
     },
     finishCreatingBoard,
     restartGame,
     boardVerification,
     verifySolution,
-    clearMessage: () => setBoardVerification({ ...boardVerification, message: '' })
+    clearMessage: () => setBoardVerification({ sucess: false, message: '' })
   }
 
   return (
